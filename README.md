@@ -7,7 +7,7 @@ The purpose of this project is to provide a demonstration of how
 
 <p align="center">
 <video width="1280" height="720" controls="controls">
-<source src="https://raw.githubusercontent.com/JerryGreenough/Delaunay-Meshing-Videos/master/images/m9.mp4" type="video/mp4">
+<source src="https://raw.githubusercontent.com/JerryGreenough/Delaunay-Meshing-Videos/master/images/m9.mp4">
  Your browser does not support the video tag.
 </video>
 </p>
