@@ -5,8 +5,9 @@
 
 The purpose of this project is to provide a demonstration of how 
 
-<video src="https://raw.githubusercontent.com/JerryGreenough/Delaunay-Meshing-Videos/master/images/m9.mp4" 
-       data-canonical-src="https://raw.githubusercontent.com/JerryGreenough/Delaunay-Meshing-Videos/master/images/m9.mp4"
+<video type="video/mp4" 
+       src="https://raw.githubusercontent.com/JerryGreenough/Delaunay-Meshing-Videos/master/images/m9.mp4" 
+       data-canonical-src="https://raw.githubusercontent.com/JerryGreenough/Delaunay-Meshing-Videos/master/images/m9.mp4" 
        controls="controls" style="max-width: 730px;">
 </video>
 
