@@ -3,9 +3,10 @@
 
 # Introduction
 
-The purpose of this project is to provide a demonstration of how 
+<video src="/Delaunay-Meshing-Videos/images/m9.mp4">
+</video>
 
-![video](https://raw.githubusercontent.com/JerryGreenough/Delaunay-Meshing-Videos/master/images/m9.mp4)
+The purpose of this project is to provide a demonstration of how
 
 https://raw.githubusercontent.com/JerryGreenough/Delaunay-Meshing-Videos/master/images/m9.mp4
 
