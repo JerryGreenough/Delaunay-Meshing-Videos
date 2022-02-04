@@ -5,16 +5,9 @@
 
 The purpose of this project is to provide a demonstration of how 
 
-<video src="https://raw.githubusercontent.com/JerryGreenough/Delaunay-Meshing-Videos/master/images/m9.mp4" controls="controls" style="max-width: 730px;">
-</video>
 
 <video controls width="250">
-
-    <source src="/media/cc0-videos/flower.webm"
-            type="video/webm">
-
-    <source src="/master/images/m9.mp4"
-            type="video/mp4">
+    <source src="/master/images/m9.mp4" type="video/mp4">
 
     Sorry, your browser doesn't support embedded videos.
 </video>
@@ -23,4 +16,8 @@ The purpose of this project is to provide a demonstration of how
     <strong><small>Example of an unrefined Delaunay Triangulation</small></strong>
 </p>
 
-The enitre repertoire o
+The enitre repertoire 
+
+<video src="https://raw.githubusercontent.com/JerryGreenough/Delaunay-Meshing-Videos/master/images/m9.mp4" controls="controls" style="max-width: 730px;">
+</video>
+
