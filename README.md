@@ -5,10 +5,8 @@
 
 The purpose of this project is to provide a demonstration of how 
 
-<p align="center">
 <video src="https://raw.githubusercontent.com/JerryGreenough/Delaunay-Meshing-Videos/master/images/m9.mp4" controls="controls" style="max-width: 730px;">
 </video>
-</p>
 
 <p align="center">
     <strong><small>Example of an unrefined Delaunay Triangulation</small></strong>
