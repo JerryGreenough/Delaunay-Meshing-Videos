@@ -5,7 +5,7 @@
 
 The purpose of this project is to provide a demonstration of how 
 
-![](https://raw.githubusercontent.com/JerryGreenough/Delaunay-Meshing-Videos/master/images/m9.mp4)
+![video](https://raw.githubusercontent.com/JerryGreenough/Delaunay-Meshing-Videos/master/images/m9.mp4)
 
 https://raw.githubusercontent.com/JerryGreenough/Delaunay-Meshing-Videos/master/images/m9.mp4
 
