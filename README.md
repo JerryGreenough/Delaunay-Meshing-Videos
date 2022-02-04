@@ -3,7 +3,7 @@
 
 # Introduction
 
-<video src="/Delaunay-Meshing-Videos/images/m9.mp4">
+<video src="/Delaunay-Meshing-Videos/images/m9.mp4" width="782" height="444">
 </video>
 
 The purpose of this project is to provide a demonstration of how
