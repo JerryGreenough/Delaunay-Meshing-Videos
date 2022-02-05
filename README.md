@@ -1,7 +1,7 @@
 # Delaunay Meshing Videos
 <strong>Purpose:</strong> Creation of animations that depict iterations from the Delaunay algorithm for the generation of optimal, unrefined triangular meshes.
 
-# Introduction
+## Introduction
 
 <p>
 The purpose of this project is to demonstrate how the 'frame-grabbing' portion of the Python library matplotlib can be used to generate an animation of the
@@ -19,7 +19,14 @@ https://user-images.githubusercontent.com/28033215/152605590-f96d97b6-c4c1-4f1a-
     <strong><small>Example of an unrefined Delaunay Triangulation</small></strong>
 </p>
 
+## Frame Grabbing
 
+<p>
+The frame-grabbing functionality has been implemented using the Python graphics library matplotlib. This library has a submodule named 'animation', 
+which contains the FFMpegWriter class.
+    
+    from matplotlib.animation import FFMpegWriter
 
+</p>
 
 
