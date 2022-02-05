@@ -129,7 +129,12 @@ class mesh:
                 
             return False     
     
-    def identifyAffectedElements(self, xynew, checkVisibility=False):
+    def identifyAffectedElements(self, nodes, checkVisibility=False):
+    
+        if len(nodes)<2: 
+            xynew = nodes[0]
+        else:
+            xynew = self.nodes[nodes[1]]
         
         # node - co-ordinates of the new node.
     
@@ -191,6 +196,56 @@ class mesh:
                     if ix in pelist: pelist.remove(ix)
                     pelist = self.edges[xx[2]['edge']]['parent_elements']
                     if ix in pelist: pelist.remove(ix)
+                    
+                    continue
+                    
+                # Does the new feature given by 'nodes' penetrate the element ?
+                
+                bBadElement = False
+                
+                if checkVisibility:
+                
+                    xyprev = self.nodes[nodes[0]]               
+                    bnorm = xyprev - xynew
+                    bnorm = bnorm / np.linalg.norm(bnorm)  
+                
+                    if not bBadElement:
+                        bint1 = lineInRayPath(xyprev,-bnorm, self.nodes[n1], self.nodes[n2])
+                        bint2 = lineInRayPath(xynew,  bnorm, self.nodes[n1], self.nodes[n2])
+                        if bint1 & bint2: bBadElement  = True                      
+                    
+                    if not bBadElement:
+                        bint1 = lineInRayPath(xyprev,-bnorm, self.nodes[n1], self.nodes[n3])
+                        bint2 = lineInRayPath(xynew,  bnorm, self.nodes[n1], self.nodes[n3])
+                        if bint1 & bint2: bBadElement  = True    
+                    
+                    if not bBadElement:
+                        bint1 = lineInRayPath(xyprev,-bnorm, self.nodes[n2], self.nodes[n3])
+                        bint2 = lineInRayPath(xynew,  bnorm, self.nodes[n2], self.nodes[n3])
+                        if bint1 & bint2: bBadElement  = True 
+  
+                    if bBadElement:   
+                        affectedElements.append(ix)
+                        
+                        if xx[0]['edge'] not in islist: islist[xx[0]['edge']] = 0
+                        if xx[1]['edge'] not in islist: islist[xx[1]['edge']] = 0
+                        if xx[2]['edge'] not in islist: islist[xx[2]['edge']] = 0
+                            
+                        islist[xx[0]['edge']] += 1
+                        islist[xx[1]['edge']] += 1
+                        islist[xx[2]['edge']] += 1
+                        
+                        iolist[xx[0]['edge']] = xx[0]['orn']
+                        iolist[xx[1]['edge']] = xx[1]['orn']
+                        iolist[xx[2]['edge']] = xx[2]['orn']
+                        
+                        pelist = self.edges[xx[0]['edge']]['parent_elements']
+                        if ix in pelist: pelist.remove(ix)
+                        pelist = self.edges[xx[1]['edge']]['parent_elements']
+                        if ix in pelist: pelist.remove(ix)
+                        pelist = self.edges[xx[2]['edge']]['parent_elements']
+                        if ix in pelist: pelist.remove(ix)
+                    
                         
         return islist, iolist, affectedElements
     
@@ -339,7 +394,9 @@ class mesh:
             
             bBoundaryElement = False
             
-            islist, iolist, TBDList = self.identifyAffectedElements(node)
+            nodes = [node]
+            
+            islist, iolist, TBDList = self.identifyAffectedElements(nodes)
             
             for ix in TBDList:
                 if len(self.elements[ix]) == 1: bBoundaryElement = True
@@ -464,7 +521,7 @@ class mesh:
     def addBoundaryLoop(self, nodeList, video=False):
     
         self.addNodes(nodeList)
-        for ixn, nn in enumerate(nodeList[:-1]):
+        for ixn in range(len(nodeList)-1):
             self.insertBoundaryEdge([ixn, ixn+1])
             if video: self.vplot(self.writer, self.fig, self.axs, labels=False, arrows=False)
     
@@ -478,19 +535,19 @@ class mesh:
         with self.writer.saving(self.fig, self.fpath, 200):
             self.addBoundaryLoop(nodeList, video=True)
             
-    def plot(self, figsize=(6,6), labels=True, arrows=True):
+    def plot(self, figsize=(6,6), labels=True, arrows=True, internal=True):
     
         fig, axs = plt.subplots(1,1, figsize=figsize)
         axs.set_aspect(aspect = 1.0)
         
-        self.draw_mesh(axs, labels = labels, arrows = arrows)
+        self.draw_mesh(axs, labels = labels, arrows = arrows, internal=internal)
         
         axs.autoscale()
         
         plt.show()
     
-    def draw_mesh(self, axs, labels=True, arrows=True):
-        draw_mesh_external(axs, self.nodes, self.edges, self.elements, labels=labels, arrows=arrows)
+    def draw_mesh(self, axs, labels=True, arrows=True, internal=True):
+        draw_mesh_external(axs, self.nodes, self.edges, self.elements, labels=labels, arrows=arrows, internal=internal)
         
     def vplot_init(self, fpath, figsize=(6,6)):
     
@@ -518,7 +575,7 @@ class mesh:
         numEdges = len(self.edges)
         
         xynew = self.nodes[nodes[1]]
-
+  
         if numEdges == 0:
             self.edges.append({'nodes':nodes, 'parent_elements':[], 'bnd':True, 'feature':True})
         elif numEdges == 1:       
@@ -603,7 +660,7 @@ class mesh:
             
             bBoundaryElement = False
             
-            islist, iolist, TBDList = self.identifyAffectedElements(xynew, checkVisibility=True)
+            islist, iolist, TBDList = self.identifyAffectedElements(nodes, checkVisibility=True)
                 
             for ix in TBDList:
                 if len(self.elements[ix]) == 1: bBoundaryElement = True
