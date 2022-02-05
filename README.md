@@ -29,4 +29,7 @@ which contains the FFMpegWriter class.
 
 </p>
 
+conda install ffmpeg
+pip install ffmpeg-python
+
 
