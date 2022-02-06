@@ -38,8 +38,31 @@ Each subsequent frame of the animation depicts the state of the mesh after the i
 </p>
 
 ## Delaunay Meshing
+<p>
+In its most basic form, the code required for the generation and display of a mesh amounts to a few lines of Python. In the following,
+.........
+The final mesh is depicted on screen by using the mehs object's <code>plot()</code> method.
+</p>
 
+```
+from boundaries import square_oo
 
+nodeList = square_oo()
+m8 = mesh()							# Create a mesh object.
+m8.addBoundaryLoop(nodeList)        # Generate the mesh.       
+m8.plot(labels=False, arrows=False) # Draw the mesh.
+
+```
+
+<img src="https://raw.githubusercontent.com/JerryGreenough/Delaunay-Meshing-Videos/master/images/mesh_oo.png" width="300" height="300"/>
+
+<p>
+Note that the co-ordinates of the last node in the node list should not be the same as those of the first node. 
+The <code>addBoundaryLoop(nodeList)</code>
+call will take care of connecting the final node to the first node.
+
+Additional sample boundaries are contained in the <code>boundaries.py</code> source file.
+</p>
 
 ## Frame Grabbing
 
