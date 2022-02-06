@@ -4,28 +4,27 @@
 ## Introduction
 
 <p>
-The purpose of this project is to demonstrate how the Animation module of the Python library ` matplotlib ` can be used to generate an mp4 video that illustrates the
+The purpose of this project is to demonstrate how the Animation module of the Python library <code>matplotlib</code> can be used to generate an mp4 video that illustrates the
 Delaunay triangulation algorithm. The objective of Delaunay triangulation is to generate a mesh of geometrically optimal triangles within a prescribed boundary.
 The work presented here demonstrates the first step of this process, which is to generate the 'unrefined' mesh, in which the only nodes present within the mesh are those 
 that define the boundary itself. If the mesh were to be used as part of an Engineering analysis (such as Finite Element modeling), then a second 'refinement' stage 
 would be required, wherein additional nodes are inserted into the interior of the boundary in order to improve mesh quality. 
 </p>
+
 <p>
 The following images illustrates a simple Delaunay triangulation (right hand image) constructed from a boundary loop (left hand image). The nodes that define the boundary are represented by red circles. The edges that form the boundary loop are blue, with the remaining interior edges being colored black.
 </p>
+
 <p float="left">
   <img src="https://raw.githubusercontent.com/JerryGreenough/Delaunay-Meshing-Videos/master/images/boundary_nodes.png" width="400" height="400"/>
   <img src="https://raw.githubusercontent.com/JerryGreenough/Delaunay-Meshing-Videos/master/images/mesh.png" width="400" height="400"/> 
 </p>
+
 <p>
 An example of the type of animation that can be generated is shown in the following .mp4 video.
 </p>
 
-
-
-
 <p align="center">
-
 <video src='https://user-images.githubusercontent.com/28033215/152694935-e5a97fbb-fac5-4f64-b7f7-5be8573b562c.mp4' width=500/>
 </p>
 
