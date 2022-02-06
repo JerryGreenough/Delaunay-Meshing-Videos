@@ -23,11 +23,11 @@ https://user-images.githubusercontent.com/28033215/152684731-83638954-8195-4f29-
 
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/JerryGreenough/Delaunay-Meshing-Videos/master/images/boundary_nodes.png" width="782" height="444">  
+    <img src="https://raw.githubusercontent.com/JerryGreenough/Delaunay-Meshing-Videos/master/images/boundary_nodes.png" width="300" height="300">  
 </p>
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/JerryGreenough/Delaunay-Meshing-Videos/master/images/mesh.png" width="782" height="444">  
+    <img src="https://raw.githubusercontent.com/JerryGreenough/Delaunay-Meshing-Videos/master/images/mesh.png" width="300" height="300">  
 </p>
 
 ## Frame Grabbing
