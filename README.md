@@ -15,7 +15,7 @@ An example of the type of animation that can be generated is shown in the follow
 </p>
 
 <p align="center">
-    https://user-images.githubusercontent.com/28033215/152684731-83638954-8195-4f29-a57e-888f02dcd39f.mp4
+https://user-images.githubusercontent.com/28033215/152684731-83638954-8195-4f29-a57e-888f02dcd39f.mp4
 </p>
 
 <p align="center">
