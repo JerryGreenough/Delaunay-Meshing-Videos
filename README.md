@@ -12,8 +12,8 @@ wherein nodes are then added to the interior of the boundary to improve mesh qua
 </p>
 <p>
 An example of the type of animation that can be generated is shown in the .mp4 video that follows. 
-
-https://user-images.githubusercontent.com/28033215/152605590-f96d97b6-c4c1-4f1a-be33-4a3f9f41a6f4.mp4
+	
+https://user-images.githubusercontent.com/28033215/152684731-83638954-8195-4f29-a57e-888f02dcd39f.mp4
 
 <p align="center">
     <strong><small>Example of an unrefined Delaunay Triangulation</small></strong>
@@ -23,11 +23,11 @@ https://user-images.githubusercontent.com/28033215/152605590-f96d97b6-c4c1-4f1a-
 
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/JerryGreenough/Delaunay-Meshing-Vdeos/master/images/boundary_nodes.png" width="782" height="444">  
+    <img src="https://raw.githubusercontent.com/JerryGreenough/Delaunay-Meshing-Videos/master/images/boundary_nodes.png" width="782" height="444">  
 </p>
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/JerryGreenough/Delaunay-Meshing-Vdeos/master/images/mesh.png" width="782" height="444">  
+    <img src="https://raw.githubusercontent.com/JerryGreenough/Delaunay-Meshing-Videos/master/images/mesh.png" width="782" height="444">  
 </p>
 
 ## Frame Grabbing
