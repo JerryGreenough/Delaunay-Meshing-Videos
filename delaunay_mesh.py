@@ -127,7 +127,28 @@ class mesh:
                                
                 if elementInFeatureShadow(pxy1, pxy2, pxy3, fxy1, fxy2, txy): return True
                 
-            return False     
+            return False  
+
+    def remove_element(self, ix, xx, islist, iolist):
+          
+        if xx[0]['edge'] not in islist: islist[xx[0]['edge']] = 0
+        if xx[1]['edge'] not in islist: islist[xx[1]['edge']] = 0
+        if xx[2]['edge'] not in islist: islist[xx[2]['edge']] = 0
+            
+        islist[xx[0]['edge']] += 1
+        islist[xx[1]['edge']] += 1
+        islist[xx[2]['edge']] += 1
+        
+        iolist[xx[0]['edge']] = xx[0]['orn']
+        iolist[xx[1]['edge']] = xx[1]['orn']
+        iolist[xx[2]['edge']] = xx[2]['orn']
+        
+        pelist = self.edges[xx[0]['edge']]['parent_elements']
+        if ix in pelist: pelist.remove(ix)
+        pelist = self.edges[xx[1]['edge']]['parent_elements']
+        if ix in pelist: pelist.remove(ix)
+        pelist = self.edges[xx[2]['edge']]['parent_elements']
+        if ix in pelist: pelist.remove(ix)
     
     def identifyAffectedElements(self, nodes, checkVisibility=False):
     
@@ -177,25 +198,7 @@ class mesh:
                             continue
                     
                     affectedElements.append(ix)
-                    
-                    if xx[0]['edge'] not in islist: islist[xx[0]['edge']] = 0
-                    if xx[1]['edge'] not in islist: islist[xx[1]['edge']] = 0
-                    if xx[2]['edge'] not in islist: islist[xx[2]['edge']] = 0
-                        
-                    islist[xx[0]['edge']] += 1
-                    islist[xx[1]['edge']] += 1
-                    islist[xx[2]['edge']] += 1
-                    
-                    iolist[xx[0]['edge']] = xx[0]['orn']
-                    iolist[xx[1]['edge']] = xx[1]['orn']
-                    iolist[xx[2]['edge']] = xx[2]['orn']
-                    
-                    pelist = self.edges[xx[0]['edge']]['parent_elements']
-                    if ix in pelist: pelist.remove(ix)
-                    pelist = self.edges[xx[1]['edge']]['parent_elements']
-                    if ix in pelist: pelist.remove(ix)
-                    pelist = self.edges[xx[2]['edge']]['parent_elements']
-                    if ix in pelist: pelist.remove(ix)
+                    self.remove_element(ix, xx, islist, iolist)
                     
                     continue
                     
@@ -226,26 +229,7 @@ class mesh:
   
                     if bBadElement:   
                         affectedElements.append(ix)
-                        
-                        if xx[0]['edge'] not in islist: islist[xx[0]['edge']] = 0
-                        if xx[1]['edge'] not in islist: islist[xx[1]['edge']] = 0
-                        if xx[2]['edge'] not in islist: islist[xx[2]['edge']] = 0
-                            
-                        islist[xx[0]['edge']] += 1
-                        islist[xx[1]['edge']] += 1
-                        islist[xx[2]['edge']] += 1
-                        
-                        iolist[xx[0]['edge']] = xx[0]['orn']
-                        iolist[xx[1]['edge']] = xx[1]['orn']
-                        iolist[xx[2]['edge']] = xx[2]['orn']
-                        
-                        pelist = self.edges[xx[0]['edge']]['parent_elements']
-                        if ix in pelist: pelist.remove(ix)
-                        pelist = self.edges[xx[1]['edge']]['parent_elements']
-                        if ix in pelist: pelist.remove(ix)
-                        pelist = self.edges[xx[2]['edge']]['parent_elements']
-                        if ix in pelist: pelist.remove(ix)
-                    
+                        self.remove_element(ix, xx, islist, iolist)
                         
         return islist, iolist, affectedElements
     
