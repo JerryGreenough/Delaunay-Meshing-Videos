@@ -46,8 +46,11 @@ def plot_nodelist(nodeList, figsize=(6,6)):
     draw_nodelist_external(axs, nodeList)
     
     axs.autoscale()
+    plt.axis('off')
     
     plt.show()
+      
+    fig.savefig(".\\boundary_nodes.png")
 
 
 def draw_mesh_external(axs, nodes, edges, elements, labels=True, arrows=True, internal=True):

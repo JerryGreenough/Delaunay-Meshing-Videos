@@ -527,6 +527,7 @@ class mesh:
         self.draw_mesh(axs, labels = labels, arrows = arrows, internal=internal)
         
         axs.autoscale()
+        plt.axis('off')
         
         plt.show()
     
@@ -550,6 +551,7 @@ class mesh:
         self.draw_mesh(axs, labels = labels, arrows = arrows)
                                    
         axs.autoscale()
+        plt.axis('off')
     
         writer.grab_frame()
         
