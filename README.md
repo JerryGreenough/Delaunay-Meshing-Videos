@@ -20,8 +20,14 @@ The following images illustrates a simple Delaunay triangulation (right hand ima
   <img src="https://raw.githubusercontent.com/JerryGreenough/Delaunay-Meshing-Videos/master/images/mesh.png" width="400" height="400"/> 
 </p>
 
+<p align="center">
+    <strong><small>Boundary loop (left) and a Delaunay mesh of its interior (right)</small></strong>
+</p>
+
 <p>
-An example of the type of animation that can be generated is shown in the following .mp4 video.
+An example of an animation of the Delaunay triangulation algorithm is shown in the following .mp4 video. The video starts with just the boundary nodes (in red). 
+Each subsequent frame of the animation depicts the state of the mesh after the introduction of a boundary edge between two adjacent nodes of the boundary loop. The boundary edges are added between consecutively defined nodes and in an order that is counter-clockwise. The element edges that emerge during the process are coplored black, save for the boundary edges, which are colored blue. The meshing algorithm maintains a convex hull of all nodes that are contained in the boundary edges that have been added up to that point. This necessitates the generation of temporary edges and elements that lie outside the blue prescribed boundary edges. For any given iteration of the alogrithm, the edges of the convex hull of all hitherto added edge nodes are colored gray. The final iteration of the algorthim removesd all elements that lie outside the prescribed boundary loop to 
+reveal the boundary loop plus any elements that are contained in its interior.
 </p>
 
 <p align="center">
