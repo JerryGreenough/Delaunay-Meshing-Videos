@@ -4,7 +4,7 @@
 ## Introduction
 
 <p>
-The purpose of this project is to demonstrate how the Animation module of the Python library `matplotlib` can be used to generate an mp4 video that illustrates the
+The purpose of this project is to demonstrate how the Animation module of the Python library ``matplotlib`` can be used to generate an mp4 video that illustrates the
 Delaunay triangulation algorithm. The objective of Delaunay triangulation is to generate a mesh of geometrically optimal triangles within a prescribed boundary.
 The work presented here demonstrates the first step of this process, which is to generate the 'unrefined' mesh, in which the only nodes present within the mesh are those 
 that define the boundary itself. If the mesh were to be used as part of an Engineering analysis (such as Finite Element modeling), then a second 'refinement' stage 
