@@ -11,7 +11,7 @@ that define the boundary itself. If the mesh were to be used as part of an Engin
 would be required, wherein additional nodes are inserted into the interior of the boundary in order to improve mesh quality. 
 </p>
 <p>
-The following images illustrates a simple Delaunay triangulation (right hand image) constructed from a boundary loop (left hand image). The nodes are represented by red circles and the element sides are represented by blak lines save for the edges that form the boundary loop which are yellow.
+The following images illustrates a simple Delaunay triangulation (right hand image) constructed from a boundary loop (left hand image). The nodes that define the boundary are represented by red circles. The edges that form the boundary loop are blue, with the remaining interior edges being colored black.
 </p>
 <p float="left">
   <img src="https://raw.githubusercontent.com/JerryGreenough/Delaunay-Meshing-Videos/master/images/boundary_nodes.png" width="400" height="400"/>
