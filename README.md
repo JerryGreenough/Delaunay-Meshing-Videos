@@ -51,21 +51,62 @@ which contains the definition of the FFMpegWriter class.
 ```   
 from matplotlib.animation import FFMpegWriter
 ```
+The overall process for writing frames to an .mp4 file is now summarized. 
+The key ingredients of the process are:
 
-During the initialization phase, a number of objects are created for later reference by the frame-grabbing functions during the Delaunay
-triangulation process. This is achieved with a call to the mesh object's ```vplot_init()``` meothd.
+* A matplotlib Figure and Axis pair
+* An instance of the matplotlib.animation MovieWriter class
+* A MovieWriter context manager that hosts the frame-grabbing process
+* The MovieWriter object's grab_frame() method - which saves the state of the Figure to a video frame
+
+The process makes use of a context manger 'saving' associated with the MovieWriter 
+instance <code>writer</code>.
+
+
+A frame is added to the mp4 file
+The MovieWriter context manager <code>saving</code> is initialized with three parameters:
+
+* The matplotlib Figure to which drawing commands are written.
+* The name of the .mp4 file to which the animation data should be written.
+* The DPI (or resolution) for the file. This controls the size in pixels of the resulting movie file.
 
 ```
+file_name = 'something.mp4'
+figsize=(6,6)
 
+fig, axs = plt.subplots(1,1, figsize=figsize)
+writer = FFMpegWriter(fps=2)
+	
+with self.writer.saving(fig, file_name, 200):
+	for iteration in algorithm:
+		mesh_data = create_mesh_data()
+		draw_commands = create_plot_commands(mesh_data)
+		
+		# Update the Matplotlib figure 'fig'
+		
+		add_to_figure(fig, draw_commands)
+		
+		# Grab the current state of the matplotlib Figure 'fig'.
+	
+		writer.grab_frame()
+```
+
+During the initialization phase, a number of objects are created for later reference by the frame-grabbing functions during the Delaunay
+triangulation process. This is achieved with a call to the mesh object's ```vplot_init()``` method. The primary 
+
+```
 def vplot_init(self, fpath, figsize=(6,6)):
 
-    fle = Path(fpath)
-    fle.touch(exist_ok=True)
+    fhandle = Path(fpath)
+    fhandle.touch(exist_ok=True) # Create the mp4 file if it doesn't already exist.
+	
     self.fpath = fpath
     
     self.fig, self.axs = plt.subplots(1,1, figsize=figsize)
     self.writer = FFMpegWriter(fps=2)
-		
+```
+
+```
 def addBoundaryLoopWithVideo(self, nodeList):
     with self.writer.saving(self.fig, self.fpath, 200):
         self.addBoundaryLoop(nodeList, video=True)
@@ -88,7 +129,7 @@ def addBoundaryLoop(self, nodeList, video=False):
 
 <p>
 Here is a simple example of how to go from a list of boundary nodes to an animation 
-of the Delaunay trianbulation of its interior.
+of the Delaunay triangulation of its interior.
 </p>
 
 ```
@@ -100,7 +141,8 @@ m6 = mesh() # Create a mesh object.
 
 nodeList = [[0.0, 0.0], [2.0, 0.0], [1.0, 3.0], [0.5, 2.5], [-0.3, 1.9], [-0.3, 0.4]]
 
-# Specify the file that should contain the .mp4 video as well as how large the video should be.
+# Specify the file that should contain the .mp4 video as well as how large the size of each
+frame of the video should be.
 
 fpath = ".\m6.mp4"
 m6.vplot_init(fpath, figsize=(6,6))  # Initialize the frame-grabbing functionality.
