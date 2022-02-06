@@ -22,14 +22,67 @@ https://user-images.githubusercontent.com/28033215/152605590-f96d97b6-c4c1-4f1a-
 ## Frame Grabbing
 
 <p>
-The frame-grabbing functionality has been implemented using the Python graphics library matplotlib. This library has a submodule named 'animation', 
+The frame-grabbing functionality is implemented using the Python graphics library matplotlib. This library has a submodule named 'animation', 
 which contains the FFMpegWriter class.
-    
-    from matplotlib.animation import FFMpegWriter
-
 </p>
 
+```   
+from matplotlib.animation import FFMpegWriter
+```
+
+During the initialization phase, a number of objects are created for later reference by the frame-grabbing functions during the Delaunay
+triangulation process. This is achieved with a call to the mesh object's ```vplot_init()``` meothd.
+
+```
+
+def vplot_init(self, fpath, figsize=(6,6)):
+
+    fle = Path(fpath)
+    fle.touch(exist_ok=True)
+    self.fpath = fpath
+    
+    self.fig, self.axs = plt.subplots(1,1, figsize=figsize)
+    self.writer = FFMpegWriter(fps=2)
+		
+def addBoundaryLoopWithVideo(self, nodeList):
+    with self.writer.saving(self.fig, self.fpath, 200):
+        self.addBoundaryLoop(nodeList, video=True)
+
+def addBoundaryLoop(self, nodeList, video=False):
+
+    self.addNodes(nodeList)
+    for ixn in range(len(nodeList)-1):
+        self.insertBoundaryEdge([ixn, ixn+1])
+        if video: self.vplot(self.writer, self.fig, self.axs, labels=False, arrows=False)
+
+    self.insertBoundaryEdge([len(nodeList)-1, 0])
+    if video: self.vplot(self.writer, self.fig, self.axs, labels=False, arrows=False)
+    
+    self.removeNonFeatureBoundaryEdges()
+    if video: self.vplot(self.writer, self.fig, self.axs, labels=False, arrows=False)
+```
+  
+## Example
+
+```
+m6 = mesh()
+
+nodeList = [[0.0, 0.0], [2.0, 0.0], [1.0, 3.0], [0.5, 2.5], [-0.3, 1.9], [-0.3, 0.4]]
+
+fpath = ".\m6.mp4"
+
+m6.vplot_init(fpath, figsize=(6,6))  # Initialize the frame-grabbing functionality.
+m6.addBoundaryLoopWithVideo(nodeList)
+```
+
+## Requirements
+
+In order for the frame-grabbing to work with matplotlib, it may be necessary to install (and sometimes
+uninstall and reinstall) ffmpeg and ffmpeg-python.
+
+```
 conda install ffmpeg
 pip install ffmpeg-python
+```
 
 
