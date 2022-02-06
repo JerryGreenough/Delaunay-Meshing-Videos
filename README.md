@@ -25,7 +25,7 @@ The following images illustrates a simple Delaunay triangulation (right hand ima
 </p>
 
 <p>
-An example of an animation of the Delaunay triangulation algorithm is shown in the following .mp4 video. The video starts with just the boundary nodes (in red). 
+An example of an animation of the Delaunay triangulation algorithm is shown in the following mp4 video. The video starts with just the boundary nodes (in red). 
 Each subsequent frame of the animation depicts the state of the mesh after the introduction of a boundary edge that is defined between two adjacent nodes of the boundary loop. The boundary edges are added between consecutively defined nodes and in an order that is counter-clockwise. The element edges that emerge during the process are colored black save for the boundary edges, which are colored blue. The meshing algorithm maintains a convex hull of all nodes that are contained in the boundary edges that have been added up to that point. This necessitates the generation of temporary edges and elements that lie outside the blue prescribed boundary edges. For any given iteration of the alogrithm, the edges of the convex hull of all hitherto-added edge nodes are colored gray. The final iteration of the algorthim removes all elements that lie outside the prescribed boundary loop to reveal the boundary loop plus any elements that are contained in its interior.
 </p>
 
@@ -45,54 +45,79 @@ Each subsequent frame of the animation depicts the state of the mesh after the i
 
 <p>
 The frame-grabbing functionality is implemented using the Python graphics library <code>matplotlib</code>. This library has a submodule named <code>animation</code>, 
-which contains the definition of the FFMpegWriter class.
+which contains the FFMpegWriter class. It is an instance of this class that serializes the content of a matplotlib Figure object into a frame of an mp4 file. The FFMpegWriter
+class is imported using the following code:
 </p>
 
 ```   
 from matplotlib.animation import FFMpegWriter
 ```
-The overall process for writing frames to an .mp4 file is now summarized. 
-The key ingredients of the process are:
+<p>
+The key ingredients of the process for writing frames to an .mp4 file are:
+</p>
 
 * A matplotlib Figure and Axis pair
 * An instance of the matplotlib.animation MovieWriter class
 * A MovieWriter context manager that hosts the frame-grabbing process
 * The MovieWriter object's grab_frame() method - which saves the state of the Figure to a video frame
 
-The process makes use of a context manger 'saving' associated with the MovieWriter 
-instance <code>writer</code>.
+<p>
+The matplotlib Figure and Axis objects are created in the standard way, with the width and height of the figure both
+set to 6 inches:
+</p>
 
+```
+figsize=(6,6)
+fig, axs = plt.subplots(1,1, figsize=figsize)
+```
 
-A frame is added to the mp4 file
-The MovieWriter context manager <code>saving</code> is initialized with three parameters:
+<p>
+The MovieWriter object is instantiated with the number of frames per second set to 2.
+</p>
+
+```
+writer = FFMpegWriter(fps=2)
+```
+
+<p>
+The process makes use of a context manger <code>saving</code> associated with the MovieWriter 
+instance <code>writer</code>. The MovieWriter context manager <code>saving</code> is initialized with three parameters:
+</p>
 
 * The matplotlib Figure to which drawing commands are written.
 * The name of the .mp4 file to which the animation data should be written.
 * The DPI (or resolution) for the file. This controls the size in pixels of the resulting movie file.
 
+<p>
+The following 'conceptual' Python code illustrates how the MovieWriter object is instructed to extract information from
+the matplotlib Figure object and write it to the mp4 video file. An 'iteration' of the Delaunay algorithm corresponds to the 
+insertion into the mesh of a boundary edge. The mesh is duly updated (<code>update_mesh()</code>) and the Figure object is
+updated to reflect changes to the mesh (<code>update_figure()</code>). The content of the updated Figure object is then
+written to the mp4 file by calling the MovieWriter object's grab_frame() method. It is the earlier instantiation of the
+MoviewWriter's context manager with the appropraite <code>file_name</code> that ensures the frame data is written to the 
+desired file.
+</p>
+
 ```
 file_name = 'something.mp4'
-figsize=(6,6)
-
-fig, axs = plt.subplots(1,1, figsize=figsize)
-writer = FFMpegWriter(fps=2)
 	
 with self.writer.saving(fig, file_name, 200):
-	for iteration in algorithm:
-		mesh_data = create_mesh_data()
-		draw_commands = create_plot_commands(mesh_data)
+	for iteration in Delaunay_algorithm:
+		new_mesh = update_mesh()
 		
 		# Update the Matplotlib figure 'fig'
 		
-		add_to_figure(fig, draw_commands)
+		update_figure(fig, new_mesh)
 		
 		# Grab the current state of the matplotlib Figure 'fig'.
 	
 		writer.grab_frame()
 ```
-
+<p>
 During the initialization phase, a number of objects are created for later reference by the frame-grabbing functions during the Delaunay
 triangulation process. This is achieved with a call to the mesh object's ```vplot_init()``` method. The primary 
+</p>
+
 
 ```
 def vplot_init(self, fpath, figsize=(6,6)):
