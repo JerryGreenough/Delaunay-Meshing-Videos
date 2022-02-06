@@ -44,8 +44,8 @@ Each subsequent frame of the animation depicts the state of the mesh after the i
 ## Frame Grabbing
 
 <p>
-The frame-grabbing functionality is implemented using the Python graphics library matplotlib. This library has a submodule named 'animation', 
-which contains the FFMpegWriter class.
+The frame-grabbing functionality is implemented using the Python graphics library <code>matplotlib</code>. This library has a submodule named <code>animation</code>, 
+which contains the definition of the FFMpegWriter class.
 </p>
 
 ```   
@@ -86,25 +86,45 @@ def addBoundaryLoop(self, nodeList, video=False):
   
 ## Example
 
+<p>
+Here is a simple example of how to go from a list of boundary nodes to an animation 
+of the Delaunay trianbulation of its interior.
+</p>
+
 ```
-m6 = mesh()
+from delaunay_mesh import mesh
+
+m6 = mesh() # Create a mesh object.
+
+# Define a simple boundary loop.
 
 nodeList = [[0.0, 0.0], [2.0, 0.0], [1.0, 3.0], [0.5, 2.5], [-0.3, 1.9], [-0.3, 0.4]]
 
-fpath = ".\m6.mp4"
+# Specify the file that should contain the .mp4 video as well as how large the video should be.
 
+fpath = ".\m6.mp4"
 m6.vplot_init(fpath, figsize=(6,6))  # Initialize the frame-grabbing functionality.
+
+# Add the boundary edges defined by consecutive nodes from the node list, recording the Delaunay
+# mesh that results in each frame.
+
 m6.addBoundaryLoopWithVideo(nodeList)
 ```
 
 ## Requirements
 
 In order for the frame-grabbing to work with matplotlib, it may be necessary to install (and sometimes
-uninstall and reinstall) ffmpeg and ffmpeg-python.
+uninstall and reinstall) the <code>ffmpeg</code> tool as well as the <code>ffmpeg-python</code> library.
 
 ```
 conda install ffmpeg
 pip install ffmpeg-python
 ```
+
+Additional information on ffmpeg and ffmpeg-python can be found here:
+
+https://www.ffmpeg.org/
+
+https://github.com/kkroening/ffmpeg-python
 
 
