@@ -114,10 +114,11 @@ with self.writer.saving(fig, file_name, 200):
 		writer.grab_frame()
 ```
 <p>
-During the initialization phase, a number of objects are created for later reference by the frame-grabbing functions during the Delaunay
-triangulation process. This is achieved with a call to the mesh object's ```vplot_init()``` method. The primary 
+The process shown above is implemented by methods associated with the `mesh` object. The key methods are `vplot_init()`, `vplot()` and `addBoundaryLoop()`, 
+all of which can be viewed in the <code>delaunay_mesh.py</code> source file.
+During the initialization phase, a number of objects are created for later reference from the <code>MovieWriter</code> object during the Delaunay
+triangulation process. This is achieved with a call to the mesh object's <code>vplot_init()</code> method. 
 </p>
-
 
 ```
 def vplot_init(self, fpath, figsize=(6,6)):
@@ -130,6 +131,11 @@ def vplot_init(self, fpath, figsize=(6,6)):
     self.fig, self.axs = plt.subplots(1,1, figsize=figsize)
     self.writer = FFMpegWriter(fps=2)
 ```
+<p>
+The implementation of the <code>update_figure()</code> function  is provided by the mesh object's <code>`vplot()</code> method. 
+This method also contains the  call to the MovieWriter object's <code>grab_frame()</code>. The implementation of the
+<code>update_mesh()</code> function is in the <code>insertBoundaryEdge()</code> function.
+</p>
 
 ```
 def addBoundaryLoopWithVideo(self, nodeList):
