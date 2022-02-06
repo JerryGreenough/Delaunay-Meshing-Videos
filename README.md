@@ -19,10 +19,8 @@ An example of the type of animation that can be generated is shown in the follow
 </p>
 
 <p align="center">
-    <strong><small>Example of an unrefined Delaunay Triangulation</small></strong>
+    <strong><small>Example of an Unrefined Delaunay Triangulation</small></strong>
 </p>
-
-https://user-images.githubusercontent.com/28033215/152687034-fcca134b-0474-4213-bf7c-f8b86dc6812b.mp4
 
 ## Delaunay Meshing
 
