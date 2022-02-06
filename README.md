@@ -13,8 +13,10 @@ is required, wherein nodes are then added to the interior of the boundary to imp
 <p>
 An example of the type of animation that can be generated is shown in the following .mp4 video.
 </p>
-	
-https://user-images.githubusercontent.com/28033215/152684731-83638954-8195-4f29-a57e-888f02dcd39f.mp4
+
+<p align="center">
+    https://user-images.githubusercontent.com/28033215/152684731-83638954-8195-4f29-a57e-888f02dcd39f.mp4
+</p>
 
 <p align="center">
     <strong><small>Example of an unrefined Delaunay Triangulation</small></strong>
