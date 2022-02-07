@@ -40,9 +40,16 @@ Each subsequent frame of the animation depicts the state of the mesh after the i
 ## Delaunay Meshing
 <p>
 The Delaunay Meshing functionality used in this project is harnassed in a dedicated <code>mesh</code> class.
-In its most basic form, the code required for the generation and display of a mesh amounts to a few lines of Python. In the following,
-.........
-The final mesh is depicted on screen by using the mesh object's <code>plot()</code> method.
+A mesh can be generated and displayed to the screen using a few lines of Python. In the following snippet, the
+mesh class is imported from <code>delaunay_mesh.py</code> and a sample list of boundary nodes is imported from 
+<code>boundaries.py</code>. The <code>square_oo()</code> function returns a counter-clockwise ordered list 
+of <code>[x,y]</code> co-ordinate pairs which represent the locations of the boundary nodes. 
+A mesh object is created, and the mesh is then
+generated using the mesh object method <code>addBoundaryLoop(nodeList)</code>. 
+Finally, the <code>plot()</code>
+method (which uses the matplotlib <code>patches</code> library) depicts the resulting mesh on the screen.
+
+A simple, unrefined mesh can be created using the following, ....
 </p>
 
 ```
@@ -51,9 +58,7 @@ from boundaries import square_oo
 
 nodeList = square_oo()
 
-# Create a mesh object.
-
-m8 = mesh()							
+m8 = mesh()							# Create a mesh object.					
 m8.addBoundaryLoop(nodeList)        # Generate the mesh.       
 m8.plot(labels=False, arrows=False) # Draw the mesh.
 ```
@@ -70,7 +75,8 @@ Note that the co-ordinates of the last node in the node list should not be the s
 The <code>addBoundaryLoop(nodeList)</code>
 call will take care of connecting the final node to the first node.
 
-Additional sample boundaries are contained in the <code>boundaries.py</code> source file.
+Additional sample boundaries are contained in the repository's <code>boundaries.py</code> source file.
+The matplotlib patches drawing commands are contained in the repository's <code>draw.py</code> file.
 </p>
 
 ## Frame Grabbing
