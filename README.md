@@ -41,11 +41,11 @@ Each subsequent frame of the animation depicts the state of the mesh after the i
 <p>
 The Delaunay Meshing functionality used in this project is harnassed in a dedicated <code>mesh</code> class.
 A mesh can be generated and displayed to the screen using a few lines of Python. In the following snippet, the
-mesh class is imported from <code>delaunay_mesh.py</code> and a sample list of boundary nodes is imported from 
+<code>mesh</code> class is imported from <code>delaunay_mesh.py</code> and a sample list of boundary nodes is imported from 
 <code>boundaries.py</code>. The <code>square_oo()</code> function returns a counter-clockwise ordered list 
 of <code>[x,y]</code> co-ordinate pairs which represent the locations of the boundary nodes. 
-A mesh object is created, and the mesh is then
-generated using the mesh object method <code>addBoundaryLoop(nodeList)</code>. 
+A mesh object is created, with boundary definintion and subsequent triangulation taking place
+by calling the mesh object method <code>addBoundaryLoop(nodeList)</code>. 
 Finally, the <code>plot()</code>
 method (which uses the matplotlib <code>patches</code> library) depicts the resulting mesh on the screen.
 
@@ -73,10 +73,14 @@ m8.plot(labels=False, arrows=False) # Draw the mesh.
 <p>
 Note that the co-ordinates of the last node in the node list should not be the same as those of the first node. 
 The <code>addBoundaryLoop(nodeList)</code>
-call will take care of connecting the final node to the first node.
-
+call will take care of connecting the final node to the first node. 
 Additional sample boundaries are contained in the repository's <code>boundaries.py</code> source file.
 The matplotlib patches drawing commands are contained in the repository's <code>draw.py</code> file.
+</p>
+
+<p>
+Many more examples of how to perform the 
+mesh generation are contained in the accompanying <code>mesh.ipynb</code> Jupyter Notebook.
 </p>
 
 ## Frame Grabbing
