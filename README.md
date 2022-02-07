@@ -39,22 +39,28 @@ Each subsequent frame of the animation depicts the state of the mesh after the i
 
 ## Delaunay Meshing
 <p>
+The Delaunay Meshing functionality used in this project is harnassed in a dedicated <code>mesh<\code> class.
 In its most basic form, the code required for the generation and display of a mesh amounts to a few lines of Python. In the following,
 .........
-The final mesh is depicted on screen by using the mehs object's <code>plot()</code> method.
+The final mesh is depicted on screen by using the mesh object's <code>plot()</code> method.
 </p>
 
 ```
+from delaunay_mesh import mesh
 from boundaries import square_oo
 
 nodeList = square_oo()
 m8 = mesh()							# Create a mesh object.
 m8.addBoundaryLoop(nodeList)        # Generate the mesh.       
 m8.plot(labels=False, arrows=False) # Draw the mesh.
-
 ```
 
+<p> which should produce a mesh like this ... </p>
+
+<p align="center">
 <img src="https://raw.githubusercontent.com/JerryGreenough/Delaunay-Meshing-Videos/master/images/mesh_oo.png" width="300" height="300"/>
+</p>
+
 
 <p>
 Note that the co-ordinates of the last node in the node list should not be the same as those of the first node. 
