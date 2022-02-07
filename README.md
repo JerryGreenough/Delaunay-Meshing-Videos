@@ -80,7 +80,9 @@ The matplotlib patches drawing commands are contained in the repository's <code>
 
 <p>
 Many more examples of how to perform the 
-mesh generation are contained in the accompanying <code>mesh.ipynb</code> Jupyter Notebook.
+mesh generation are contained in the accompanying <code>mesh.ipynb</code> Jupyter Notebook. The Delaunay meshing algorithm for this project has been
+implemented entirely in Python, and as a consequence is rather slow. If it were used in a production environment, then it should be implemented in
+a faster, compiled language such as C++ or Fortran.
 </p>
 
 ## Frame Grabbing
